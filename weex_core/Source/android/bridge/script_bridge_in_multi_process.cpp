@@ -910,8 +910,9 @@ std::unique_ptr<IPCResult> HandleDispatchMessageSync(IPCArguments *arguments) {
 }
 
 std::unique_ptr<IPCResult> OnReceivedResult(IPCArguments *arguments) {
-    auto callbackId = std::unique_ptr<char[]>(getArumentAsCStr(arguments, 0));
-    long callback_id = atol(std::move(callbackId).get());  std::unique_ptr<WeexJSResult> result;
+  auto callbackId = std::unique_ptr<char[]>(getArumentAsCStr(arguments, 0));
+  long callback_id = atol(std::move(callbackId).get());
+  std::unique_ptr<WeexJSResult> result;
   result.reset(new WeexJSResult);
   if (arguments->getCount() > 1 && arguments->getType(1) == IPCType::BYTEARRAY &&
       arguments->getByteArray(1)->length > 0) {
